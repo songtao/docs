@@ -1,59 +1,68 @@
-我们的目的
+Phalcon的诞生
 ==========
 
-现在有很多各种各样的PHP框架，但他们没有一个像Phalcon一样（真的，在这点上请相信我）
+现在可以选择使用的PHP框架有很多，但没有任何一个和Phalcon一样（真的，在这点上请相信我们）
 
-几乎所有的程序员都喜欢使用框架，这主要是因为框架提供了很多的功能，已经经过了大量的测试，因此保持代码DRY（不要重复造轮子）。然而，框架本身需要包含大量的文件来解释和执行实际应用中的每个请求，因此会降低应用程序的性能，影响用户体验。
+几乎所有的程序员在实际的开发中都喜欢使用框架，这主要是因为框架提供了很多的已经经过了测试的功能，因此可以很好的保持代码DRY（Don't Repeat Yourself-
+不重复开发代码）。
 
-The Question
+然而，在实际应用处理每个请求时，框架自身需要调用大量的文件来解释和执行，因此会降低应用程序的性能，影响用户体验。
+
+起源
 ------------
 
-为什么我们不能有这样一个框架，保持它的优势的同时，没有或者很少有缺点呢？
+为什么我们不能开发这样一个框架，保有使用框架的正面优势（丰富的功能，面向对象的设计，完整的测试，等等）的同时，减少使用框架的负面缺点
+（过多的文件载入，冗余的代码执行）？
 
 这就是为什么Phalcon诞生了！
 
-在过去的几个月中，我们已经广泛地研究了PHP的行为，调查区域为显着优化（大或小）。
-通过Zend引擎的理解，我们设法消除不必要的验证，压缩的代码，进行优化和生成的
-低级别的解决方案，从而使Phalcon实现最大的性能。
+我们用了几个月的时间，广泛地研查了PHP的特性，探寻着可以显著优化的区域（大的，或小的）。经过努力，我们终于可以移除不必要的验证，压缩的代码，
+进行优化和生成的低级别的代码方案，从而可以在Phalcon中实现最大的性能优化。
 
-Why?
+为什么使用框架？
 ----
+* 实际的PHP项目开发中，对框架的使用以变得必不可少。
+* 对于框架的应用，可以使项目结构清晰，减少代码开发，易于维护，让开发过程变得更有趣。
+* 对于热爱用PHP人来说，应用框架可以使大型项目的开发更容易。
 
-* The use of frameworks has become mandatory in professional development with PHP
-* 框架提供了结构化的理念，以轻松维护项目，编写更少的代码，使工作变得更有趣
-
-Inner workings of PHP?
+PHP的几点性能缺陷
 ----------------------
+* PHP是一种动态的和弱变量类型语言。每一个二元运算（例如，2+“2”），PHP都会检查操作数的类型，并进行相应的类型转换。
+* PHP是解释型语言。主要的缺点是性能上的损失。
+* 每一个PHP脚本的都只能在被解释后执行.
+* 如果不使用字节码缓存（如APC），则对同一个PHP脚本文件的每一次请求执行，都会做一次语法检查。
 
-* PHP是一种动态的和弱变量类型语言。每次一个二进制运算（例如，2+“2”），PHP就会检查操作数的类型来进行类型转换
-* PHP是解释型语言。主要的缺点是性能上的损失
-* 每一个请求，它必须首先解释.
-* 如果不使用字节码缓存（如APC），则任何时间的任何一个请求它都会进行语法检查
-
-How traditional PHP frameworks work?
+传统的PHP框架
 ------------------------------------
+* 每一次请求，大量的类和函数的文件都会被读取。从性能的角度，对硬盘的读取代价是昂贵的，尤其是文件有很多层目录结构的时候。
+* 现代的PHP框架通过采用延迟加载技术（自动加载）来提高性能。（只加载包含需要的代码的文件）
+* 尽管延迟加载可以提高性能，但是对于被加载的文件，并不是这个文件的所有的代码都是必须的。所以从内存消耗的角度看，还是一种浪费。
+* 持续的文件加载和解释，也是性能消耗的大户。
+* 一个框架的代码更新速度很慢。每一次发起一个相同请求，服务器都需要重新加载和解释框架的相应代码。
 
-* Many files with classes and functions are read on every request made. Disk reading is expensive in terms of performance, especially when the file structure includes deep folders
-* Modern frameworks use lazy loading (autoload) to increase performance (for load and execute only the code needed)
-* Continuous loading or interpreting is expensive and impacts performance
-* The framework code does not change very often, therefore an application needs to load and interpret it every time a request is made
-
-How does a PHP C-extension work?
+C 扩展的PHP框架
 --------------------------------
+* 在服务器启动时，C 扩展和 PHP代码一次性被加载。
+* 被加载后，任何应用都可以直接调用 C扩展提供的类和函数。
+* 代码是被编译后直接执行，不在是边解释边执行。
 
-* C extensions are loaded together with PHP one time on the web server's daemon start process
-* Classes and functions provided by the extension are ready to use for any application
-* The code isn't interpreted because is already compiled to a specific platform and processor
-
-How does Phalcon work?
+Phalcon 框架
 ----------------------
+* Phalcon 的部件是松散耦合（*）架构，可以随意单独的或组合使用。
+* Phalcon 是在代码执行的最底层实行优化，所以可有效地降低资源的消耗。
+* Phalcon 通过用C语言的 ORM来获得高性能的数据库交互。
+* Phalcon 通过直接访问PHP内部结构来提高代码的运行效率。
 
-* Components are loosely coupled. With Phalcon, nothing is imposed on you: you're free to use the full framework, or just some parts of it as a glue components.
-* Low-level optimizations provides the lowest overhead for MVC-based applications
-* Interact with databases with maximum performance by using a C-language ORM for PHP
-* Phalcon directly accesses internal PHP structures optimizing execution in that way as well
+为什么选择使用 Phalcon?
+------------------------------
+每一个应用的需求和任务都是不同的。对于那些实现固定任务和静态内容的应用，只要采用前端缓存技术，用任何语言或框架都可以获得很高的性能。
 
-Conclusion
+而对于那些根据请求生成动态生成内容的应用。例如 APIs， 高流量的论坛， 大容量内容的博客， 统计类的应用， 管理员的面板， 企业资源的管理，
+商业智能实时分析。这类的应用的响应时间，完全取决于瓶颈部分的处理效率。Phalcon 作为一个高效率的，功能丰富的框架，可以有效地缩短这类动态内容的处理时间，内存消耗。
+
+小结
 ----------
-Phalcon is an effort to build the fastest framework for PHP. You now have an even easier and robust way to develop applications without be worrying about performance. Enjoy!
+Phalcon 的目的是成为最高效的 PHP 框架。“性能至上”从始至终都贯穿在 Phalcon的开发过程中。谢谢！
 
+
+* 为了防止歧义我还是把“loosely coupled”翻译成“松散耦合”这个术语了。单独看这个中文词，我是不明白它是什么意思。鄙视一下，最先这么翻译的人。把简单的英文翻译成复杂难懂的中文也就算了，还非常自豪的把它推广。
