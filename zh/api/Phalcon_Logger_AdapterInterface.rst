@@ -7,55 +7,49 @@ Phalcon\\Logger\\AdapterInterface initializer
 Methods
 ---------
 
-abstract public  **setFormat** (*string* $format)
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **setFormatter** (:doc:`Phalcon\\Logger\\FormatterInterface <Phalcon_Logger_FormatterInterface>` $formatter)
 
-Set the log format
-
-
-
-abstract public *format*  **getFormat** ()
-
-Returns the log format
+Sets the message formatter
 
 
 
-abstract public *string*  **getTypeString** (*integer* $type)
+abstract public :doc:`Phalcon\\Logger\\FormatterInterface <Phalcon_Logger_FormatterInterface>`  **getFormatter** ()
 
-Returns the string meaning of a logger constant
-
-
-
-abstract public  **setDateFormat** (*string* $date)
-
-Sets the internal date format
+Returns the internal formatter
 
 
 
-abstract public *string*  **getDateFormat** ()
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **setLogLevel** (*int* $level)
 
-Returns the internal date format
+Filters the logs sent to the handlers to be greater or equals than a specific level
 
 
 
-abstract public  **log** (*string* $message, *int* $type)
+abstract public *int*  **getLogLevel** ()
+
+Returns the current log level
+
+
+
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **log** (*string* $message, [*int* $type])
 
 Sends/Writes messages to the file log
 
 
 
-abstract public  **begin** ()
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **begin** ()
 
 Starts a transaction
 
 
 
-abstract public  **commit** ()
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **commit** ()
 
 Commits the internal transaction
 
 
 
-abstract public  **rollback** ()
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **rollback** ()
 
 Rollbacks the internal transaction
 
@@ -67,37 +61,37 @@ Closes the logger
 
 
 
-abstract public  **debug** (*string* $message)
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **debug** (*string* $message)
 
 Sends/Writes a debug message to the log
 
 
 
-abstract public  **error** (*string* $message)
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **error** (*string* $message)
 
 Sends/Writes an error message to the log
 
 
 
-abstract public  **info** (*string* $message)
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **info** (*string* $message)
 
 Sends/Writes an info message to the log
 
 
 
-abstract public  **notice** (*string* $message)
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **notice** (*string* $message)
 
 Sends/Writes a notice message to the log
 
 
 
-abstract public  **warning** (*string* $message)
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **warning** (*string* $message)
 
 Sends/Writes a warning message to the log
 
 
 
-abstract public  **alert** (*string* $message)
+abstract public :doc:`Phalcon\\Logger\\Adapter <Phalcon_Logger_Adapter>`  **alert** (*string* $message)
 
 Sends/Writes an alert message to the log
 

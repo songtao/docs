@@ -1,45 +1,53 @@
 Interface **Phalcon\\DiInterface**
 ==================================
 
+*extends* ArrayAccess
+
 Phalcon\\DiInterface initializer
 
 
 Methods
 ---------
 
-abstract public :doc:`Phalcon\\Di\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **set** (*string* $alias, *mixed* $config, *boolean* $shared)
+abstract public :doc:`Phalcon\\DI\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **set** (*string* $name, *mixed* $definition, [*boolean* $shared])
 
 Registers a service in the services container
 
 
 
-abstract public :doc:`Phalcon\\Di\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **setShared** (*string* $name, *mixed* $config)
+abstract public :doc:`Phalcon\\DI\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **setShared** (*string* $name, *mixed* $definition)
 
 Registers an "always shared" service in the services container
 
 
 
-abstract public  **remove** (*string* $alias)
+abstract public  **remove** (*string* $name)
 
 Removes a service in the services container
 
 
 
-abstract public :doc:`Phalcon\\Di\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **attempt** (*string* $alias, *mixed* $config, *boolean* $shared)
+abstract public :doc:`Phalcon\\DI\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **attempt** (*string* $name, *mixed* $definition, [*boolean* $shared])
 
 Attempts to register a service in the services container Only is successful if a service hasn't been registered previously with the same name
 
 
 
-abstract public *mixed*  **get** (*string* $alias, *array* $parameters)
+abstract public *mixed*  **get** (*string* $name, [*array* $parameters])
 
 Resolves the service based on its configuration
 
 
 
-abstract public *mixed*  **getShared** (*string* $alias, *array* $parameters)
+abstract public *mixed*  **getShared** (*string* $name, [*array* $parameters])
 
 Returns a shared service based on their configuration
+
+
+
+abstract public :doc:`Phalcon\\DI\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **setRaw** (*string* $name, :doc:`Phalcon\\DI\\ServiceInterface <Phalcon_DI_ServiceInterface>` $rawDefinition)
+
+Sets a service using a raw Phalcon\\DI\\Service definition
 
 
 
@@ -49,13 +57,13 @@ Returns a service definition without resolving
 
 
 
-abstract public :doc:`Phalcon\\Di\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **getService** (*unknown* $name)
+abstract public :doc:`Phalcon\\DI\\ServiceInterface <Phalcon_DI_ServiceInterface>`  **getService** (*string* $name)
 
 Returns the corresponding Phalcon\\Di\\Service instance for a service
 
 
 
-abstract public *boolean*  **has** (*string* $alias)
+abstract public *boolean*  **has** (*string* $name)
 
 Check whether the DI contains a service by a name
 
@@ -79,7 +87,7 @@ Set a default dependency injection container to be obtained into static methods
 
 
 
-abstract public static :doc:`Phalcon\\DI <Phalcon_DI>`  **getDefault** ()
+abstract public static :doc:`Phalcon\\DiInterface <Phalcon_DiInterface>`  **getDefault** ()
 
 Return the last DI created
 
@@ -89,5 +97,25 @@ abstract public static  **reset** ()
 
 Resets the internal default DI
 
+
+
+abstract public  **offsetExists** (*unknown* $offset) inherited from ArrayAccess
+
+...
+
+
+abstract public  **offsetGet** (*unknown* $offset) inherited from ArrayAccess
+
+...
+
+
+abstract public  **offsetSet** (*unknown* $offset, *unknown* $value) inherited from ArrayAccess
+
+...
+
+
+abstract public  **offsetUnset** (*unknown* $offset) inherited from ArrayAccess
+
+...
 
 

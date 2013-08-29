@@ -11,13 +11,13 @@ Allows to define translation lists using PHP arrays
 Methods
 ---------
 
-public  **__construct** (*unknown* $options)
+public  **__construct** (*array* $options)
 
 Phalcon\\Translate\\Adapter\\NativeArray constructor
 
 
 
-public *string*  **query** (*string* $index, *array* $placeholders)
+public *string*  **query** (*string* $index, [*array* $placeholders])
 
 Returns the translation related to the given key
 
@@ -29,7 +29,7 @@ Check whether is defined a translation key in the internal array
 
 
 
-public *string*  **_** (*string* $translateKey, *array* $placeholders) inherited from Phalcon\\Translate\\Adapter
+public *string*  **_** (*string* $translateKey, [*array* $placeholders]) inherited from Phalcon\\Translate\\Adapter
 
 Returns the translation string of the given key
 
@@ -49,11 +49,11 @@ Check whether a translation key exists
 
 public  **offsetUnset** (*string* $offset) inherited from Phalcon\\Translate\\Adapter
 
-Elimina un indice del diccionario
+Unsets a translation from the dictionary
 
 
 
-public *string*  **offsetGet** (*string* $traslateKey) inherited from Phalcon\\Translate\\Adapter
+public *string*  **offsetGet** (*string* $translateKey) inherited from Phalcon\\Translate\\Adapter
 
 Returns the translation related to the given key
 

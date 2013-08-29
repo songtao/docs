@@ -17,14 +17,14 @@ Allows to cache output fragments, PHP data or raw data to a memcache backend  Th
      ));
     
      //Create the Cache setting memcached connection options
-     $cache = new Phalcon\Cache\Backend\File($frontCache, array(
+     $cache = new Phalcon\Cache\Backend\Memcache($frontCache, array(
     	'host' => 'localhost',
     	'port' => 11211,
       	'persistent' => false
      ));
     
      //Cache arbitrary data
-     $cache->store('my-data', array(1, 2, 3, 4, 5));
+     $cache->save('my-data', array(1, 2, 3, 4, 5));
     
      //Get data
      $data = $cache->get('my-data');
@@ -34,7 +34,7 @@ Allows to cache output fragments, PHP data or raw data to a memcache backend  Th
 Methods
 ---------
 
-public  **__construct** (:doc:`Phalcon\\Cache\\FrontendInterface <Phalcon_Cache_FrontendInterface>` $frontend, *array* $options)
+public  **__construct** (:doc:`Phalcon\\Cache\\FrontendInterface <Phalcon_Cache_FrontendInterface>` $frontend, [*array* $options])
 
 Phalcon\\Cache\\Backend\\Memcache constructor
 
@@ -46,13 +46,13 @@ Create internal connection to memcached
 
 
 
-public *mixed*  **get** (*int|string* $keyName, *long* $lifetime)
+public *mixed*  **get** (*int|string* $keyName, [*long* $lifetime])
 
 Returns a cached content
 
 
 
-public  **save** (*int|string* $keyName, *string* $content, *long* $lifetime, *boolean* $stopBuffer)
+public  **save** ([*int|string* $keyName], [*string* $content], [*long* $lifetime], [*boolean* $stopBuffer])
 
 Stores cached content into the Memcached backend and stops the frontend
 
@@ -64,31 +64,25 @@ Deletes a value from the cache by its key
 
 
 
-public *array*  **queryKeys** (*string* $prefix)
+public *array*  **queryKeys** ([*string* $prefix])
 
 Query the existing cached keys
 
 
 
-public *boolean*  **exists** (*string* $keyName, *long* $lifetime)
+public *boolean*  **exists** ([*string* $keyName], [*long* $lifetime])
 
 Checks if cache exists and it hasn't expired
 
 
 
-public  **__destruct** ()
-
-Destructs the backend closing the memcached connection
-
-
-
-public *mixed*  **start** (*int|string* $keyName) inherited from Phalcon\\Cache\\Backend
+public *mixed*  **start** (*int|string* $keyName, [*long* $lifetime]) inherited from Phalcon\\Cache\\Backend
 
 Starts a cache. The $keyname allows to identify the created fragment
 
 
 
-public  **stop** (*boolean* $stopBuffer) inherited from Phalcon\\Cache\\Backend
+public  **stop** ([*boolean* $stopBuffer]) inherited from Phalcon\\Cache\\Backend
 
 Stops the frontend without store any cached content
 
@@ -127,6 +121,12 @@ Sets the last key used in the cache
 public *string*  **getLastKey** () inherited from Phalcon\\Cache\\Backend
 
 Gets the last key stored by the cache
+
+
+
+public *int*  **getLifetime** () inherited from Phalcon\\Cache\\Backend
+
+Gets the last lifetime set
 
 
 

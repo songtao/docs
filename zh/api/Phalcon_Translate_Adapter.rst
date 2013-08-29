@@ -9,7 +9,7 @@ Base class for Phalcon\\Translate adapters
 Methods
 ---------
 
-public *string*  **_** (*string* $translateKey, *array* $placeholders)
+public *string*  **_** (*string* $translateKey, [*array* $placeholders])
 
 Returns the translation string of the given key
 
@@ -29,11 +29,11 @@ Check whether a translation key exists
 
 public  **offsetUnset** (*string* $offset)
 
-Elimina un indice del diccionario
+Unsets a translation from the dictionary
 
 
 
-public *string*  **offsetGet** (*string* $traslateKey)
+public *string*  **offsetGet** (*string* $translateKey)
 
 Returns the translation related to the given key
 

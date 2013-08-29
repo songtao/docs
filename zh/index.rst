@@ -10,12 +10,11 @@ Phalcon是一个用C语言写成的，高性能的，完整独立的无缝集成
 Phalcon是松耦合的结构，根据需要可以自由的选择组件。
 
 Phalcon不仅是性能优越，而且功能强大丰富和易于使用!
-
 目录
 -------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    reference/motivation
    reference/benchmark
@@ -69,6 +68,7 @@ Phalcon不仅是性能优越，而且功能强大丰富和易于使用!
    reference/debug
    reference/tools
    reference/whats-next
+   reference/unit-testing
    api/index
    reference/license
 

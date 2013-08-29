@@ -73,6 +73,18 @@ Throws an internal exception
 
 
 
+protected  **_handleException** ()
+
+Handles a user exception
+
+
+
+public *string*  **getTaskClass** ()
+
+Possible task class name that will be located to dispatch the request
+
+
+
 public :doc:`Phalcon\\CLI\\Task <Phalcon_CLI_Task>`  **getLastTask** ()
 
 Returns the lastest dispatched controller
@@ -121,9 +133,21 @@ Sets the default action suffix
 
 
 
+public  **setModuleName** (*string* $moduleName) inherited from Phalcon\\Dispatcher
+
+Sets the module where the controller is (only informative)
+
+
+
+public *string*  **getModuleName** () inherited from Phalcon\\Dispatcher
+
+Gets the module where the controller class is
+
+
+
 public  **setNamespaceName** (*string* $namespaceName) inherited from Phalcon\\Dispatcher
 
-Sets a namespace to be prepended to the handler name
+Sets the namespace where the controller class is
 
 
 
@@ -159,7 +183,7 @@ Sets the action name to be dispatched
 
 public *string*  **getActionName** () inherited from Phalcon\\Dispatcher
 
-Gets last dispatched action name
+Gets the lastest dispatched action name
 
 
 
@@ -181,15 +205,27 @@ Set a param by its name or numeric index
 
 
 
-public *mixed*  **getParam** (*mixed* $param, *string|array* $filters, *mixed* $defaultValue) inherited from Phalcon\\Dispatcher
+public *mixed*  **getParam** (*mixed* $param, [*string|array* $filters], [*mixed* $defaultValue]) inherited from Phalcon\\Dispatcher
 
 Gets a param by its name or numeric index
+
+
+
+public *string*  **getActiveMethod** () inherited from Phalcon\\Dispatcher
+
+Returns the current method to be/executed in the dispatcher
 
 
 
 public *boolean*  **isFinished** () inherited from Phalcon\\Dispatcher
 
 Checks if the dispatch loop is finished or has more pendent controllers/tasks to disptach
+
+
+
+public  **setReturnedValue** (*mixed* $value) inherited from Phalcon\\Dispatcher
+
+Sets the latest returned value by an action manually
 
 
 
@@ -207,7 +243,26 @@ Dispatches a handle action taking into account the routing parameters
 
 public  **forward** (*array* $forward) inherited from Phalcon\\Dispatcher
 
-Forwards the execution flow to another controller/action
+Forwards the execution flow to another controller/action Dispatchers are unique per module. Forwarding between modules is not allowed 
+
+.. code-block:: php
+
+    <?php
+
+      $this->dispatcher->forward(array('controller' => 'posts', 'action' => 'index'));
+
+
+
+
+public *boolean*  **wasForwarded** () inherited from Phalcon\\Dispatcher
+
+Check if the current executed action was forwarded by another one
+
+
+
+public *string*  **getHandlerClass** () inherited from Phalcon\\Dispatcher
+
+Possible class name that will be located to dispatch the request
 
 
 
